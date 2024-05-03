@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block ven_content %}
+
+
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('{% static 'assets/images/page-header-bg.jpg'%}')">
+        		<div class="container">
+        			<h1 class="page-title">Vendors<span>We have <strong>( {{ vendor.count }} ) vendor{{ vendor.count|pluralize }}.</strong></span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            
+
+            <div class="page-content">
+                <div class="container">
+                	
+                     
+                	<div class="row">
+                        {% for v in vendor %}
+                		<div class="col-6 col-md-4 col-lg-4">
+                			<div class="product text-center">
+                				<figure class="product-media">
+                					<!-- <span class="product-label label-sale">30% off</span> -->
+                					<a href="{% url 'sitepages:vendor_det' v.ven_id %}">
+                						<img src="{{ v.image.url }}" alt="Product image" class="product-image">
+                					</a>
+
+                					
+                				</figure><!-- End .product-media -->
+
+                				<div class="product-body">
+                					
+                					<h3 class="product-title"><a href="{% url 'sitepages:vendor_det' v.ven_id %}">{{ v.title }}</a></h3><!-- End .product-title -->
+                					<div class="product-price">
+                						<span class="new-price">{{ v.vendor.all.count }}</span>
+                						
+                					</div><!-- End .product-price -->
+                                    <div class="product-size">
+                                        <p>{{ v.date|date }}</p>
+                                    </div><!-- End .product-size -->
+                					<div class="#">
+                						<p class="ratings-text">{{ v.address }}</p>
+                						
+                						<span class="ratings-text">{{ v.contact }}</span>
+                					</div><!-- End .rating-container -->
+
+                					
+                				</div><!-- End .product-body -->
+                			</div><!-- End .product -->
+                		</div><!-- End .col-sm-6 col-lg-4 -->
+                        {% endfor %}
+
+                		
+                	</div><!-- End .row -->
+
+                	
+                	
+            </div><!-- End .page-content -->
+
+
+        </main><!-- End .main -->
+
+        
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    
+
+    
+
+   
+
+    
+
+{% endblock %}
+
+

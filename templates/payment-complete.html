@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block cart_content %}
+
+
+
+
+
+    <div class="invoice-container">
+        <h1 class="invoice-title">Invoice</h1>
+        <div class="invoice-info">
+            <!-- <p>Invoice Number: #12345</p> -->
+            <!-- <p>Date: March 13, 2023</p> -->
+            <p>Ship To: {{ request.user|title }}</p>
+            <!-- <p>Ship To: John Doe</p> -->
+        </div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pro_id, item in cart_data.items %}
+                <tr>
+                    
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.qty }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>${% widthratio item.price 1 item.qty %}</td>
+                </tr>
+                {% endfor %}
+                
+                <tr>
+                    <td colspan="3" class="total-label">Total Amount</td>
+                    <td class="total-amount">${{ cart_total_amount|floatformat:2 }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="text-center mt-4  thank">Hey {{ request.user|title }}, Thanks for Shopping with us!</p>
+
+
+{% endblock %}

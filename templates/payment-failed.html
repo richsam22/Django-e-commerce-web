@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block cart_content %}
+
+
+
+<section class="payment-failed">
+    <div class="content">
+        <h2>Payment Failed
+
+        </h2>
+        <img src="{% static 'assets/images/IMG_0604 3.PNG' %}" alt="Payment Failed">
+        <p>It looks like there was an error processing your payment. Please check your card details and try again.</p>
+        <button class="btn">Try Again</button>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block cart_content %}
+
+
+        <main class="main" id="wishlist-list">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">Wishlist<span>There are {{ wishlist.count }} item{{ wishlist.count|pluralize }} in your wishlist</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                   
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+            	<div class="container">
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th>Price</th>
+								<th>Stock Status</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+                            {% for w in wishlist %}
+							<tr>
+								<td class="product-col">
+									<div class="product">
+										<figure class="product-media">
+											<a href="{% url 'sitepages:product_det' w.product.pro_id %}">
+												<img src="{{ w.product.image.url }}" alt="Product image">
+											</a>
+										</figure>
+
+										<h3 class="product-title">
+											<a href="{% url 'sitepages:product_det' w.product.pro_id %}">{{ w.product.title }}</a>
+										</h3><!-- End .product-title -->
+									</div><!-- End .product -->
+								</td>
+								<td class="price-col">${{ w.product.price }}</td>
+								<td class="stock-col"><span class="in-stock">{% if w.product.in_stock %} In stock  {% else %} Out of stock {% endif %}</span></td>
+								
+								<!-- <td class="action-col">
+                                    <div class="dropdown">
+									<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="icon-list-alt"></i>Select Options
+                                    </button>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">First option</a>
+                                        <a class="dropdown-item" href="#">Another option</a>
+                                        <a class="dropdown-item" href="#">The best option</a>
+                                      </div>
+                                    </div>
+								</td> -->
+								<td class="remove-col "><button class="btn-remove btn-danger  delete-wishlist-product" data-wishlist-product="{{ w.id }}"><i class="icon-close text-success"></i></button></td>
+								{% empty %}
+								
+									<p>Nothing in wishlist yet.</p>
+								
+							</tr>
+                            {% endfor %}
+							
+							
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+	            	<div class="wishlist-share">
+	            		<div class="social-icons social-icons-sm mb-2">
+	            			<label class="social-label">Share on:</label>
+	    					<a href="https://www.facebook.com/" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+	    					<a href="https://twitter.com/" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+	    					<a href="https://instagram.com/" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+	    					<a href="https://youtube.com/" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+	    					<a href="https://pinterest.com/" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+	    				</div><!-- End .soial-icons -->
+	            	</div><!-- End .wishlist-share -->
+            	</div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+  {% endblock %}      
